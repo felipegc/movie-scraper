@@ -1,0 +1,6 @@
+functions-framework==2.2.1
+mock==4.0.3
+pytest==6.2.4
+uuid==1.30
+requests-mock==1.9.3
+beautifulsoup4==4.9.3

@@ -1,0 +1,5 @@
+functions-framework==2.2.1
+requests==2.25.1
+google-cloud-error-reporting==1.2.1
+google-cloud-pubsub==2.6.1
+beautifulsoup4==4.9.3
