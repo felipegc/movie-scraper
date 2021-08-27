@@ -6,6 +6,7 @@ from google.cloud import pubsub_v1
 publisher = pubsub_v1.PublisherClient()
 PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT')
 
+
 def publish(start):
     topic_name = 'scraping_pagination_topic'
     message = start

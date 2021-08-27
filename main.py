@@ -23,11 +23,10 @@ def init_scraping(request):
 
     year = request_args['year']
     amount_titles = imdb_service_request.get_amount_titles(year)
+    offsets = imdb_service_request.get_offsets_by_page_size(amount_titles)
 
-    # TODO: felipegc find and extract the pagination
-    # For each start, publish the message to topic
-    test = pup_sub_utils.publish(amount_titles)
-    # publish('501')
+    for offset in offsets:
+        pup_sub_utils.publish(offset)
 
     return 'The jobs to process the pages were submitted'
 
