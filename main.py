@@ -3,7 +3,7 @@ import base64
 import os
 
 from flask import escape, abort
-import localpackages.pub_sub_utils as pup_sub_utils
+import localpackages.pub_sub_service_request as pub_sub_service_request
 import localpackages.imdb_service_request as imdb_service_request
 
 
@@ -26,7 +26,7 @@ def init_scraping(request):
     offsets = imdb_service_request.get_offsets_by_page_size(amount_titles)
 
     for offset in offsets:
-        pup_sub_utils.publish(offset)
+        pub_sub_service_request.publish_offset(offset)
 
     return 'The jobs to process the pages were submitted'
 

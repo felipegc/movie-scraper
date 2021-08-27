@@ -30,13 +30,13 @@ class MainInitScrapingTest(unittest.TestCase):
                     'Year is a mandatory param')
 
     @mock.patch('localpackages.imdb_service_request.get_amount_titles', return_value=1000)
-    @mock.patch('localpackages.pub_sub_utils.publish', return_value='Felipe')
+    @mock.patch('localpackages.pub_sub_service_request.publish_offset', return_value='Message published.')
     def test_init_scraping_should_publish_offsets(self, mock_publish, \
       mock_get_amount_titles):
         app = Flask(__name__)
 
         with app.test_request_context(query_string={'year': '1980'}):
-            res = main.init_scraping(request)
+            main.init_scraping(request)
 
         mock_publish.assert_has_calls([call(1), call(251), call(501), call(751)])
 
