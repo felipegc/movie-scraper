@@ -1,10 +1,11 @@
 import unittest.mock as mock
 import unittest
-import main
 
 from flask import Flask, request
 from unittest.mock import call
 from werkzeug.exceptions import HTTPException
+
+import main
 
 class MainInitScrapingTest(unittest.TestCase):
     def test_init_scraping_should_fail_without_param(self):

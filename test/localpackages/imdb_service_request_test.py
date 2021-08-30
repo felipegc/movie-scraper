@@ -2,7 +2,7 @@ import requests_mock
 import unittest.mock as mock
 import unittest
 
-import localpackages.imdb_service_request as imdb_service_request
+from localpackages import imdb_service_request
 
 def fileLoader(filename):
     with open(filename, 'r', encoding='unicode_escape') as f:
@@ -16,7 +16,7 @@ class ImdbServiceRequestTest(unittest.TestCase):
           '&view=simple&count=1'
 
         year = '1980'
-        request_response_file = './assets_test/get_amount_titles.txt'
+        request_response_file = 'assets_test/get_amount_titles.txt'
 
         with requests_mock.Mocker() as rm:
             rm.get(api_endpoint, text=fileLoader(request_response_file), status_code=200)
@@ -43,7 +43,7 @@ class ImdbServiceRequestTest(unittest.TestCase):
         self.assertEquals(offsets, [1])
 
     def test_get_titles_info_from_html_success(self):
-        html_file = './assets_test/get_amount_titles.txt'
+        html_file = 'assets_test/get_amount_titles.txt'
         text=fileLoader(html_file)
 
         title_info = imdb_service_request.get_titles_info_from_html(text)
@@ -51,7 +51,7 @@ class ImdbServiceRequestTest(unittest.TestCase):
         self.assertEqual(title_info, '1-1 of 1,514 titles.')
 
     def test_get_titles_info_from_html_should_raise_exception(self):
-        html_file = './assets_test/simple_html.txt'
+        html_file = 'assets_test/simple_html.txt'
         text=fileLoader(html_file)
 
         with self.assertRaises(Exception) as context:
